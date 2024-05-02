@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="#">Controle de Clientes</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item" *ngIf="!isAuthenticated">
+          <a class="nav-link text-white" routerLink="autenticar-usuario">
+            Autenticar Usuário
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="!isAuthenticated">
+          <a class="nav-link text-white" routerLink="criar-usuario">
+            Criar Conta de Usuário
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <a class="nav-link text-white" routerLink="clientes-cadastro">
+            Cadastrar Clientes
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <a class="nav-link text-white" routerLink="clientes-consulta">
+            Consultar Clientes
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <div class="nav-link text-white">
+            <strong>{{emailUsuario}}</strong>
+          </div>
+        </li>
+
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <button class="nav-link text-white" (click)="logout()">
+            Sair do Sistema
+          </button>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>

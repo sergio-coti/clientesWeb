@@ -1,0 +1,85 @@
+<div class="m-2">
+  <div
+    *ngIf="mensagemSucesso != ''"
+    class="alert alert-primary alert-dismissible fade show"
+    role="alert"
+  >
+    <strong>{{ mensagemSucesso }}</strong>
+    <button
+      (click)="mensagemSucesso = ''"
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+    ></button>
+  </div>
+
+  <div
+    *ngIf="mensagemErro != ''"
+    class="alert alert-danger alert-dismissible fade show"
+    role="alert"
+  >
+    <strong>{{ mensagemErro }}</strong>
+    <button
+      (click)="mensagemErro = ''"
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+    ></button>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+      <div class="col">
+        <label>Nome do usuário:</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Digite seu nome aqui"
+          formControlName="nome"
+        />
+        <div class="text-danger" *ngIf="f['nome'].touched && f['nome'].invalid">
+          Por favor, informe o nome com pelo menos 8 caracteres.
+        </div>
+      </div>
+      <div class="col">
+        <label>Email de acesso:</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Digite seu email aqui"
+          formControlName="email"
+        />
+        <div
+          class="text-danger"
+          *ngIf="f['email'].touched && f['email'].invalid"
+        >
+          Por favor, informe um endereço de email válido.
+        </div>
+      </div>
+      <div class="col">
+        <label>Senha de acesso:</label>
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Digite sua senha aqui"
+          formControlName="senha"
+        />
+        <div
+          class="text-danger"
+          *ngIf="f['senha'].touched && f['senha'].invalid"
+        >
+          Por favor, informe a senha com letras maiúsculas, letras minúsculas,
+          números, símbolos e pelo menos 8 caracteres.
+        </div>
+      </div>
+      <div class="col">
+        <input
+          type="submit"
+          class="btn btn-success mt-4"
+          value="Realizar Cadastro"
+          [disabled]="form.invalid"
+        />
+      </div>
+    </div>
+  </form>
+</div>

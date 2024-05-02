@@ -1,0 +1,50 @@
+<!-- mensagem de retorno da API -->
+<div *ngIf="mensagem != ''" 
+      class="alert alert-primary alert-dismissible fade show" 
+      role="alert">
+      <strong>{{mensagem}}</strong>
+      <button 
+          (click)="mensagem = ''"
+          type="button" 
+          class="btn-close" 
+          aria-label="Close"></button>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nome do cliente</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Plano</th>
+                <th>Operações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let c of clientes">
+                <td>{{c.nome}}</td>
+                <td>{{c.email}}</td>
+                <td>{{c.telefone}}</td>
+                <td>{{c.plano.nome}}</td>
+                <td>
+                    <button class="btn btn-outline-primary btn-sm"
+                        (click)="onEdit(c.id)">
+                        Editar
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm ms-2"
+                        (click)="onDelete(c.id)">
+                        Excluir
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5">
+                    Quantidade de clientes: {{clientes.length}}
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>

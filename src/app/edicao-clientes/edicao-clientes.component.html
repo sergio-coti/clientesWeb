@@ -1,0 +1,69 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <!-- campo oculto -->
+    <input type="hidden" formControlName="id"/>
+
+    <!-- mensagem de retorno da API -->
+    <div *ngIf="mensagem != ''" 
+        class="alert alert-primary alert-dismissible fade show" 
+        role="alert">
+        <strong>{{mensagem}}</strong>
+        <button 
+            (click)="mensagem = ''"
+            type="button" 
+            class="btn-close" 
+            aria-label="Close"></button>
+    </div>
+
+    <!-- linha -->
+    <div class="row">
+        <!-- coluna -->
+        <div class="col">
+            <label>Nome do cliente:</label>
+            <input type="text" class="form-control" formControlName="nome"/>
+            <div class="text-danger" *ngIf="f['nome'].touched && f['nome'].invalid">
+                Informe um nome de 8 a 100 caracteres.
+            </div>
+        </div>
+        <!-- coluna -->
+        <div class="col">
+            <label>Email:</label>
+            <input type="text" class="form-control" formControlName="email"/>
+            <div class="text-danger" *ngIf="f['email'].touched && f['email'].invalid">
+                Informe um endereço de email válido.
+            </div>
+        </div>
+        <!-- coluna -->
+        <div class="col">
+            <label>Telefone:</label>
+            <input type="text" class="form-control" formControlName="telefone"/>
+            <div class="text-danger" *ngIf="f['telefone'].touched && f['telefone'].invalid">
+                Informe um telefone no formato '(99) 99999-9999'.
+            </div>
+        </div>
+        <!-- coluna -->
+        <div class="col">
+            <label>Plano:</label>
+            <select class="form-select" formControlName="planoId">
+                <option value="">Escolha uma opção</option>
+                <option *ngFor="let p of planos" value="{{p.id}}">
+                    {{p.nome}}
+                </option>
+            </select>
+            <div class="text-danger" *ngIf="f['planoId'].touched && f['planoId'].invalid">
+                Selecione um plano para o cliente.
+            </div>
+        </div>
+    </div>
+
+    <!-- linha -->
+    <div class="row mt-3">
+        <div class="col">
+            <button type="submit" [disabled]="form.invalid"
+                class="btn btn-outline-primary btn-sm">
+                Salvar Alterações
+            </button>
+        </div>
+    </div>
+
+</form>
